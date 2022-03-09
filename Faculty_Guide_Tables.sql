@@ -3,7 +3,7 @@ CREATE TABLE `attendence` (
   `CLASS_ID` varchar(10) NOT NULL,
   `CLASS_NAME` varchar(15) NOT NULL,
   `STUDENT_ATTENDED` int NOT NULL,
-  `TAKEN_BY` varchar(8) NOT NULL,
+  `TAKEN_BY` varchar(40) NOT NULL,
   PRIMARY KEY (`CLASS_ID`),
   KEY `CLASS_NAME_HON_idx` (`CLASS_NAME`),
   KEY `STUDENT_ATTENDED_idx` (`STUDENT_ATTENDED`),
@@ -43,7 +43,7 @@ CREATE TABLE `enroll` (
 CREATE TABLE `gen_class` (
   `CLASS_ID` varchar(10) NOT NULL,
   `CLASS_NAME` varchar(50) NOT NULL,
-  `TAKEN_BY` varchar(8) NOT NULL,
+  `TAKEN_BY` varchar(40) NOT NULL,
   `CLASS_STUDENTS` int NOT NULL,
   PRIMARY KEY (`CLASS_ID`),
   KEY `CLASS_NAME1_idx` (`CLASS_NAME`),
@@ -60,7 +60,7 @@ CREATE TABLE `gen_paper` (
   `PAPER_NAME` varchar(50) NOT NULL,
   `PAPER_DEPT` varchar(25) NOT NULL,
   `PAPER_SEM` varchar(12) NOT NULL,
-  `PAPER_TAKEN_BY` varchar(8) NOT NULL,
+  `PAPER_TAKEN_BY` varchar(40) NOT NULL,
   PRIMARY KEY (`PAPER_ID`),
   KEY `PAPER_TAKEN_BY_idx` (`PAPER_TAKEN_BY`),
   CONSTRAINT `PAPER_TAKEN_BY2` FOREIGN KEY (`PAPER_TAKEN_BY`) REFERENCES `teacher` (`TEACHER_ID`)
@@ -70,7 +70,7 @@ CREATE TABLE `gen_paper` (
 CREATE TABLE `hons_class` (
   `CLASS_ID` varchar(10) NOT NULL,
   `CLASS_NAME` varchar(50) NOT NULL,
-  `TAKEN_BY` varchar(8) NOT NULL,
+  `TAKEN_BY` varchar(40) NOT NULL,
   `CLASS_STUDENTS` int NOT NULL,
   PRIMARY KEY (`CLASS_ID`),
   KEY `TAKEN_BY_idx` (`TAKEN_BY`),
@@ -88,7 +88,7 @@ CREATE TABLE `hons_paper` (
   `PAPER_DEPT` varchar(25) NOT NULL,
   `PAPER_COURSE_ID` varchar(15) NOT NULL,
   `PAPER_SEM` varchar(12) NOT NULL,
-  `PAPER_TAKEN_BY` varchar(8) NOT NULL,
+  `PAPER_TAKEN_BY` varchar(40) NOT NULL,
   PRIMARY KEY (`PAPER_ID`),
   KEY `PAPER_TAKEN_BY_idx` (`PAPER_TAKEN_BY`),
   CONSTRAINT `PAPER_TAKEN_BY` FOREIGN KEY (`PAPER_TAKEN_BY`) REFERENCES `teacher` (`TEACHER_ID`)
@@ -119,7 +119,7 @@ CREATE TABLE `student` (
 -- Teacher Table --
 CREATE TABLE `teacher` (
   `TEACHER_DEPT` varchar(8) NOT NULL,
-  `TEACHER_ID` varchar(8) NOT NULL,
+  `TEACHER_ID` varchar(40) NOT NULL,
   `TEACHER_NAME` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`TEACHER_ID`),
   KEY `TEA_DEPT_idx` (`TEACHER_DEPT`)
@@ -127,7 +127,7 @@ CREATE TABLE `teacher` (
 
 -- Teacher Credentials --
 CREATE TABLE `teacher_credentials` (
-  `TEACHER_ID` varchar(8) NOT NULL,
+  `TEACHER_ID` varchar(40) NOT NULL,
   `PASSWORD` varchar(25) NOT NULL,
   `SCHEDULE_ID` varchar(10) NOT NULL,
   PRIMARY KEY (`TEACHER_ID`),
